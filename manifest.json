@@ -1,12 +1,27 @@
 {
     "name": "LiveMessage",
+    "short_name": "LiveM",
     "start_url": "./index.html",
-    "display": "standalone",
+    "display": "minimal-ui",
+    "background_color": "#96c93d",
+    "theme_color": "#96c93d",
+    "orientation": "portrait",
+    "shortcuts": [
+        {
+            "name": "Messages",
+            "url": "./index.html"
+        }
+    ],
     "icons": [
         {
             "src": "images/icon.png",
             "type": "image/png",
-            "sizes": "512x512"
+            "sizes": "192x192 512x512"
+        },
+        {
+            "src": "images/icon.svg",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
         }
     ]
 }
