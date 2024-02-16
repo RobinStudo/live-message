@@ -1,0 +1,76 @@
+:root {
+    --color-primary: #00b09b;
+    --color-secondary: #96c93d;
+    --color-dark: #2f3640;
+    --color-light: #dcdde1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+header {
+    background: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));
+    padding: 10px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+section article {
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    padding: 10px;
+    align-self: flex-start;
+    max-width: 300px;
+}
+
+article.me {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    align-self: flex-end;
+}
+
+form {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    padding: 10px;
+}
+
+form > label {
+    flex: 1;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    background-color: inherit;
+    border: 2px solid var(--color-primary);
+}
+
+button {
+    border: none;
+    background-color: var(--color-secondary);
+    font-weight: 700;
+}
