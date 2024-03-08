@@ -8,6 +8,7 @@ export class RoomService {
     private elements = {
         messageForm: document.querySelector('.message-form') as HTMLFormElement,
         messageFeed: document.querySelector('.message-feed'),
+        messageTemplate: document.getElementById('message-template') as HTMLTemplateElement,
     }
 
     constructor(private name: string) {
@@ -39,9 +40,12 @@ export class RoomService {
     }
 
     private displayMessage(message: Message, isExternal = true) {
-        const article = document.createElement('article');
+        const fargment = document.importNode(this.elements.messageTemplate.content, true);
+        const article = fargment.querySelector('article');
         article.classList.add(isExternal ? 'ext' : 'me');
-        article.textContent = message.content;
+        article.querySelector('.username').textContent = message.username;
+        article.querySelector('.content').textContent = message.content;
+        article.querySelector('.sent-at').textContent = message.sentAt.toISOString();
 
         this.elements.messageFeed.appendChild(article);
     }

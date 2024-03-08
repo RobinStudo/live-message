@@ -38,17 +38,26 @@ section {
 }
 
 section article {
-    background-color: var(--color-primary);
-    border-radius: 10px;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     align-self: flex-start;
     max-width: 300px;
 }
 
 article.me {
+    align-self: flex-end;
+}
+
+article .content {
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+article.me .content {
     background-color: var(--color-light);
     color: var(--color-dark);
-    align-self: flex-end;
 }
 
 form {
