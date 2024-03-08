@@ -7,6 +7,7 @@
         <title>LiveMessage</title>
         <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="css/app.css">
+        <script src="dist/app.js" defer></script>
     </head>
     <body>
         <header>
@@ -26,5 +27,21 @@
             </label>
             <button>Envoyer</button>
         </form>
+
+        <dialog id="user-register">
+            <form>
+                <label>
+                    Nom d'utilisateur
+                    <input type="text" name="username" required>
+                </label>
+
+                <label>
+                    <input type="checkbox" name="enableNotification">
+                    Activer les notifications
+                </label>
+
+                <button>S'inscrire</button>
+            </form>
+        </dialog>
     </body>
 </html>
