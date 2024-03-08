@@ -67,6 +67,7 @@ input[type="text"] {
     padding: 5px;
     background-color: inherit;
     border: 2px solid var(--color-primary);
+    color: var(--color-light);
 }
 
 button {

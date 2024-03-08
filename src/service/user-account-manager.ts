@@ -1,5 +1,5 @@
 import { Singleton } from "../util/singleton";
-import { User } from "./user";
+import { User } from "../model/user";
 
 export class UserAccountManager extends Singleton {
     private storageKey = 'user';
@@ -33,7 +33,7 @@ export class UserAccountManager extends Singleton {
         });
     }
 
-    store() {
+    private store() {
         const data = new FormData(this.elements.registerForm);
         this.user = {
             username: data.get('username') as string,
@@ -42,5 +42,9 @@ export class UserAccountManager extends Singleton {
 
         localStorage.setItem(this.storageKey, JSON.stringify(this.user));
         this.elements.registerDialog.close();
+    }
+
+    getUser(): User {
+        return this.user;
     }
 }
