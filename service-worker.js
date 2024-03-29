@@ -4,13 +4,14 @@ const assetCacheKey = 'assets-v' + assetVersion;
 self.addEventListener('install', e => {
     e.waitUntil(
         caches.open(assetCacheKey).then(cache => {
-            cache.addAll([
+            return cache.addAll([
                 '/',
                 '/css/app.css',
                 '/dist/app.js',
+                'http://localhost:4000/messages'
             ]);
         })
-    );
+    )
 });
 
 self.addEventListener('activate', e => {

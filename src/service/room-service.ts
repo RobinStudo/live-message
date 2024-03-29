@@ -1,8 +1,10 @@
 import { Message } from "../model/message";
+import { ApiProvider } from "./api-provider";
 import { SocketManager } from "./socket-manager";
 import { UserAccountManager } from "./user-account-manager";
 
 export class RoomService {
+    private apiProvider = ApiProvider.getInstance();
     private socketManager = SocketManager.getInstance();
     private userAccountManager = UserAccountManager.getInstance();
     private elements = {
@@ -24,6 +26,19 @@ export class RoomService {
         this.socketManager.listen().subscribe((message: Message) => {
             this.displayMessage(message);
         });
+
+        this.loadPreviousMessages();
+    }
+
+    private loadPreviousMessages() {
+        const user = this.userAccountManager.getUser();
+        this.apiProvider.fetch('/messages')
+            .then((data: Message[]) => {
+                for (const message of data) {
+                    this.displayMessage(message, message.username !== user.username);
+                }
+            })
+        ;
     }
 
     private handleMessage() {
