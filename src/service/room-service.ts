@@ -43,6 +43,11 @@ export class RoomService {
         const fargment = document.importNode(this.elements.messageTemplate.content, true);
         const article = fargment.querySelector('article');
         article.classList.add(isExternal ? 'ext' : 'me');
+
+        if (typeof message.sentAt === "string") {
+            message.sentAt = new Date(message.sentAt);
+        }
+
         article.querySelector('.username').textContent = message.username;
         article.querySelector('.content').textContent = message.content;
         article.querySelector('.sent-at').textContent = message.sentAt.toISOString();
