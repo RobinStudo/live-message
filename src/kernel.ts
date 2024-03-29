@@ -15,5 +15,10 @@ export class Kernel {
         if(!this.userAccountManager.isConnected()) {
             this.userAccountManager.register();
         }
+
+        navigator.serviceWorker.register('dist/worker.js')
+            .then(r => console.log(r))
+            .catch(e => console.error(e))
+        ;
     }
 }
