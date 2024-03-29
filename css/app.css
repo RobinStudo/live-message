@@ -9,6 +9,17 @@
     box-sizing: border-box;
 }
 
+.hide {
+    display: none!important;
+}
+
+#netwrok-offline {
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+    color: var(--color-light);
+}
+
 body {
     display: flex;
     flex-direction: column;
