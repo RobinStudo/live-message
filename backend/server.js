@@ -34,7 +34,7 @@ app.get('/push/key', (req, res) => {
 
 app.post('/push/sub', (req, res) => {
     subscriptions.push(req.body);
-    return res.ok;
+    return res.json({});
 });
 
 app.listen(4000);

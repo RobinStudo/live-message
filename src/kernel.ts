@@ -1,5 +1,6 @@
 import { NetworkObserver } from "./service/network-observer";
 import { RoomService } from "./service/room-service";
+import { ServiceWorkerManager } from "./service/service-worker-manager";
 import { UserAccountManager } from "./service/user-account-manager";
 
 export class Kernel {
@@ -10,17 +11,13 @@ export class Kernel {
         this.init();
     }
 
-    private init() {
+    private async init() {
         NetworkObserver.getInstance();
+        await ServiceWorkerManager.getInstance().register();
         this.rooms.push(new RoomService("main"));
 
         if(!this.userAccountManager.isConnected()) {
             this.userAccountManager.register();
         }
-
-        navigator.serviceWorker.register('service-worker.js')
-            .then(r => console.log(r))
-            .catch(e => console.error(e))
-        ;
     }
 }
