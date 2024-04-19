@@ -15,29 +15,11 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-    e.waitUntil(
-        caches.keys().then(keyList => {
-            return Promise.all(
-                keyList.map(key => {
-                    if (key !== assetCacheKey) {
-                        return caches.delete(key);
-                    }
-                }),
-            );
-        }),
-    );
+    e.waitUntil(activate());
 });
 
 self.addEventListener('fetch', e => {
-    e.respondWith(
-        caches.match(e.request).then(response => {
-            if (response) {
-                return response;
-            }
-
-            return fetch(e.request);
-        })
-    );
+    e.respondWith(fetch(e));
 });
 
 self.addEventListener('push', e => {
@@ -47,3 +29,29 @@ self.addEventListener('push', e => {
        })
    );
 });
+
+const activate = async () => {
+    caches.keys().then(keyList => {
+        return Promise.all(
+            keyList.map(key => {
+                if (key !== assetCacheKey) {
+                    return caches.delete(key);
+                }
+            }),
+        );
+    });
+
+    if (self.registration.navigationPreload) {
+        await self.registration.navigationPreload.enable();
+    }
+}
+
+const fetch = async (e) => {
+    let response = await caches.match(e.request);
+    if (response) {
+        return response;
+    }
+
+    response = await e.preloadResponse;
+    return response ?? fetch(e.request);
+}
