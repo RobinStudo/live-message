@@ -39,3 +39,11 @@ self.addEventListener('fetch', e => {
         })
     );
 });
+
+self.addEventListener('push', e => {
+   e.waitUntil(
+       self.registration.showNotification('Nouveau message', {
+           icon: 'http://localhost:8000/images/icon.png',
+       })
+   );
+});
